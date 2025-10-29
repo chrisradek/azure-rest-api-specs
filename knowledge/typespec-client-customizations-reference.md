@@ -24,8 +24,8 @@ using Azure.ClientGenerator.Core;
 
 ## Client Customizations Namespace
 
-`client.tsp` should have a file-level namespace if types (e.g. models, interfaces, operations, etc) are defined for client customizations.
-Do not add a file-level namespace if one already exists. They are not required when only augment (`@@`) decorators are used.
+`client.tsp` should have a file-level namespace if types (e.g. models, interfaces, operations, etc) are defined in `client.tsp`.
+Do not add a file-level namespace if one already exists. They are only required when types are defined in `client.tsp`.
 
 ```typespec
 import "./main.tsp";
