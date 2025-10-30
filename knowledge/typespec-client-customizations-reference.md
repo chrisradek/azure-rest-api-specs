@@ -448,7 +448,7 @@ interface UserClient {
 @client({ service: MyService, name: "Foo.MyServiceClient" }, "java")
 @client({ service: MyService, name: "MyServiceClient" }, "!java")
 interface MyServiceClient {
-  getData is MyService.getAllData; // operation renamed for all languages
+  getAllData is MyService.getAllData;
 }
 
 // Different clients for python and Go
@@ -458,8 +458,18 @@ interface MyClientPython {
 }
 @client({ service: MyService, name: "MyClient" }, "go")
 interface MyClientGo {
-  fetch is MyService.fetchData;
+  fetchStream is MyService.fetchStream;
 }
 ```
 
+### Scenario 6: Rename custom client operations
+
+```typespec
+// Create a client with operation names changed
+@client({ service: MyService, name: "MyClient" })
+interface MyClient {
+  getFoo is MyService.getFooData;
+}
+
 This reference provides the essential patterns and decorators for TypeSpec client customizations. Focus on the core decorators (`@client`, `@operationGroup`, `@@clientLocation`, `@@clientName`, `@@access`) for most scenarios, and use advanced features selectively.
+```
