@@ -143,6 +143,7 @@ namespace ClientCustomizations;
 
 **Purpose**: Define root clients in the SDK.
 **Restrictions**: Cannot be used with `@clientLocation` decorator. Cannot be used as an augmentation (`@@`) decorator.
+**Important**: `@client` has to be used on a type defined in `client.tsp`, so a file-level namespace (e.g. `namespace ClientCustomizations;`) should be added if one does not exist.
 **Syntax**: `@client(options: ClientOptions, scope?: string)`
 **Usage**:
 
@@ -171,6 +172,7 @@ interface PetClient {
 
 **Purpose**: Define sub-clients (operation groups).
 **Restrictions**: Cannot be used with `@clientLocation` decorator. Cannot be used as an augmentation (`@@`) decorator.
+**Important**: `@operationGroup` has to be used on a type defined in `client.tsp`, so a file-level namespace (e.g. `namespace ClientCustomizations;`) should be added if one does not exist.
 **Syntax**: `@operationGroup(scope?: string)`
 **Usage**:
 
@@ -244,7 +246,7 @@ interface Users {
 ### @clientInitialization
 
 **Purpose**: Add custom parameters to client initialization.
-**Note**: The client options model should be in
+**Important**: When `@clientInitialization` references a model defined in `client.tsp`, a file-level namespace (e.g. `namespace ClientCustomizations;`) should be added if one does not exist.
 **Syntax**: `@clientInitialization(options: ClientInitializationOptions, scope?: string)`
 **Usage**:
 
@@ -289,6 +291,7 @@ model MyClientOptions {
 
 **Purpose**: Customize method signatures in generated clients.
 **Restrictions**: Only operation parameter signatures can be customized.
+**Important**: When `@override` references an operation defined in `client.tsp`, a file-level namespace (e.g. `namespace ClientCustomizations;`) should be added if one does not exist.
 **Syntax**: `@override(override: Operation, scope?: string)`
 
 **Usage**:
@@ -373,6 +376,7 @@ op myOperationCustom(options: MyOperationOptions): void;
 - Use scope parameter for language-specific customizations
 - Prefer scope negation (`"!csharp"`) when excluding single languages
 - Combine scopes (`"python, java"`) when logic is identical across languages
+- Use a file-level namespace (e.g. `namespace ClientCustomizations;`) in `client.tsp` if any types are defined in `client.tsp`.
 
 ### Don'ts
 
