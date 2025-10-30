@@ -441,4 +441,25 @@ interface UserClient {
 }
 ```
 
+### Scenario 5: Language-specific clients
+
+```typespec
+// Different client names for Java and others
+@client({ service: MyService, name: "Foo.MyServiceClient" }, "java")
+@client({ service: MyService, name: "MyServiceClient" }, "!java")
+interface MyServiceClient {
+  getData is MyService.getAllData; // operation renamed for all languages
+}
+
+// Different clients for python and Go
+@client({ service: MyService, name: "MyClient" }, "python")
+interface MyClientPython {
+  fetchData is MyService.fetchData;
+}
+@client({ service: MyService, name: "MyClient" }, "go")
+interface MyClientGo {
+  fetch is MyService.fetchData;
+}
+```
+
 This reference provides the essential patterns and decorators for TypeSpec client customizations. Focus on the core decorators (`@client`, `@operationGroup`, `@@clientLocation`, `@@clientName`, `@@access`) for most scenarios, and use advanced features selectively.
