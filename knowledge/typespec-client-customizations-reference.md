@@ -217,6 +217,7 @@ interface Users {
 ### @clientName
 
 **Purpose**: Override generated names for SDK elements. Takes precedence over all other naming mechanisms.
+**Important**: Always use PascalCase or camelCase for the rename parameter to make it easier to combine language scopes. SDKs will apply language-specific naming conventions automatically.
 **Syntax**: `@clientName(rename: string, scope?: string)`
 **Usage**:
 
@@ -408,8 +409,7 @@ interface Users { login(): void; }
 @@clientName(getUserInfo, "GetUserInformation");
 
 // Language-specific naming
-@@clientName(uploadFile, "upload_file", "python");
-@@clientName(uploadFile, "UploadFile", "csharp");
+@@clientName(uploadFile, "UploadFile", "csharp, python");
 ```
 
 ### Scenario 3: Add Client Parameters
